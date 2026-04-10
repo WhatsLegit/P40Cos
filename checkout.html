@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - P40 COSMETICS</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-spa"></i>
+                <div>
+                    <h1>P40 COSMETICS</h1>
+                    <p>Glow with Confidence</p>
+                    <span class="ayekooo">Ayekooo!!</span>
+                </div>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html" id="login-link">Login</a></li>
+                    <li><a href="cart.html"><i class="fas fa-shopping-cart"></i> Cart</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Checkout Section -->
+    <section class="auth-section">
+        <div class="container">
+            <div class="auth-form" style="max-width: 600px;">
+                <h1>Checkout</h1>
+
+                <!-- Order Summary -->
+                <div id="checkout-summary" style="margin-bottom: 24px; background: #f9f0f5; padding: 16px; border-radius: 10px;"></div>
+
+                <form id="checkout-form">
+                    <h3 style="margin-bottom: 12px;">Delivery Details</h3>
+
+                    <div class="form-group">
+                        <label for="delivery-name">Full Name</label>
+                        <input type="text" id="delivery-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="delivery-phone">Phone Number</label>
+                        <input type="tel" id="delivery-phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="delivery-location">Delivery Location / Address</label>
+                        <input type="text" id="delivery-location" placeholder="e.g. Accra, East Legon, House No. 5" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="delivery-notes">Additional Notes (optional)</label>
+                        <textarea id="delivery-notes" rows="2" placeholder="Any special instructions..."></textarea>
+                    </div>
+
+                    <h3 style="margin: 20px 0 12px;">Payment Method</h3>
+                    <div class="form-group">
+                        <div class="payment-options">
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="momo" required>
+                                <span><i class="fas fa-mobile-alt"></i> Mobile Money (MoMo)</span>
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="cash">
+                                <span><i class="fas fa-money-bill-wave"></i> Cash on Delivery</span>
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="bank">
+                                <span><i class="fas fa-university"></i> Bank Transfer</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- MoMo number field (shown only when MoMo selected) -->
+                    <div id="momo-field" style="display:none;">
+                        <div class="form-group">
+                            <label for="momo-network">Your Network</label>
+                            <select id="momo-network">
+                                <option value="">-- Select your network --</option>
+                                <option value="mtn">MTN</option>
+                                <option value="telecel">Telecel</option>
+                                <option value="airteltigo">AirtelTigo</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="momo-number">Your MoMo Number</label>
+                            <input type="tel" id="momo-number" placeholder="e.g. 0530737048">
+                        </div>
+
+                        <!-- Payment instructions -->
+                        <div id="momo-instructions" style="display:none; background:#f9f0f5; border-radius:12px; padding:16px; margin-top:8px;">
+                            <p style="font-weight:600; margin-bottom:10px;">Send payment to: <span style="color:#e91e8c;">0530737048 — FAUSTINA WIREKOAGYEMANG (MTN)</span></p>
+                            <div id="momo-steps"></div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary" style="width:100%; margin-top: 16px;">Place Order</button>
+                </form>
+
+                <div id="checkout-message" style="margin-top: 12px; font-weight: 500;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-spa"></i>
+                    <div>
+                        <h3>P40 COSMETICS</h3>
+                        <p>Glow with Confidence</p>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-phone"></i> 0530737048</p>
+                    <p><i class="fas fa-phone"></i> 0534242509</p>
+                    <p><i class="fas fa-envelope"></i> nharniejay15@gmail.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 P40 Cosmetics. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="firebase/firebase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/checkout.js"></script>
+</body>
+</html>
+
+
+
+

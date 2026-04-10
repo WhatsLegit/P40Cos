@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - P40 COSMETICS</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://upload.cloudinary.com/global/all.js" type="text/javascript"></script>
+</head>
+<body>
+    <!-- Admin Header -->
+    <header class="admin-header">
+        <div class="container">
+            <h1>Admin Panel</h1>
+            <button id="logout-btn" class="btn-secondary">Logout</button>
+        </div>
+    </header>
+
+    <!-- Admin Navigation -->
+    <nav class="admin-nav">
+        <div class="container">
+            <ul>
+                <li><a href="#dashboard" class="active">Dashboard</a></li>
+                <li><a href="#products">Manage Products</a></li>
+                <li><a href="#users">Manage Users</a></li>
+                <li><a href="#carts">Customer Carts</a></li>
+                <li><a href="#orders">Orders</a></li>
+                <li><a href="#messages">Messages</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Dashboard -->
+    <section id="dashboard" class="admin-section active">
+        <div class="container">
+            <h2>Dashboard</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <i class="fas fa-users"></i>
+                    <h3 id="total-users">0</h3>
+                    <p>Total Users</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-box"></i>
+                    <h3 id="total-products">0</h3>
+                    <p>Total Products</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3 id="total-messages">0</h3>
+                    <p>Messages</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-shopping-cart"></i>
+                    <h3 id="total-carts">0</h3>
+                    <p>Active Carts</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-shopping-bag"></i>
+                    <h3 id="total-orders">0</h3>
+                    <p>Orders</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Manage Products -->
+    <section id="products" class="admin-section">
+        <div class="container">
+            <h2>Manage Products</h2>
+            <button id="add-product-btn" class="btn-primary">Add New Product</button>
+            <div id="products-list">
+                <!-- Products will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Manage Users -->
+    <section id="users" class="admin-section">
+        <div class="container">
+            <h2>Manage Users</h2>
+            <div id="users-list">
+                <!-- Users will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Messages -->
+    <section id="messages" class="admin-section">
+        <div class="container">
+            <h2>Messages</h2>
+            <div id="messages-list">
+                <!-- Messages will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Orders -->
+    <section id="orders" class="admin-section">
+        <div class="container">
+            <h2>Orders</h2>
+            <div id="orders-list">
+                <!-- Orders will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Carts -->
+    <section id="carts" class="admin-section">
+        <div class="container">
+            <h2>Customer Carts</h2>
+            <div id="carts-list">
+                <!-- Carts will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Add Product Modal -->
+    <div id="add-product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Add New Product</h2>
+            <form id="add-product-form">
+                <input type="hidden" id="product-id">
+                <input type="hidden" id="current-image">
+                <div class="form-group">
+                    <label for="product-name">Name</label>
+                    <input type="text" id="product-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="product-price">Price (₵)</label>
+                    <input type="number" id="product-price" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="product-description">Description</label>
+                    <textarea id="product-description" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="product-image">Product Image (Upload File)</label>
+                    <input type="file" id="product-image" accept="image/*">
+                </div>
+                <div class="form-group">
+                    <label for="product-image-url">Or Image URL (External Link)</label>
+                    <input type="url" id="product-image-url" placeholder="https://example.com/image.jpg">
+                    <small style="color: #666; font-size: 0.85rem;">Use either file upload or URL, not both</small>
+                </div>
+                <div class="form-group">
+                    <label for="imageUpload">Cloudinary Upload (Recommended)</label>
+                    <input type="file" id="imageUpload" accept="image/*" onchange="uploadProduct()">
+                    <button type="button" onclick="uploadProduct()" class="btn-secondary">Upload to Cloudinary</button>
+                    <div id="upload-status" style="margin-top: 5px; font-size: 0.85rem; color: #666;"></div>
+                </div>
+                <div class="form-group">
+                    <label for="product-category">Category</label>
+                    <select id="product-category" required>
+                        <option value="foundation">Foundation</option>
+                        <option value="lipstick">Lipstick</option>
+                        <option value="skincare">Skincare</option>
+                        <option value="tools">Tools</option>
+                    </select>
+                </div>
+                <button type="submit" id="submit-product-btn" class="btn-primary">Add Product</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+    <script src="firebase/firebase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>it
+
